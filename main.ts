@@ -24,40 +24,40 @@ import { deflateSync } from 'node:zlib';
 // ===========================================================================
 const STORIES = [
   // ---- 12 FEATURES (grid 4x3) ----
-  { n: 1, k: 'ASIA · DIPLOMACY', h: 'Putin in Shenzhen for three-way summit',
+  { n: 1, k: 'ASIA · DIPLOMACY', h: 'Putin in Shenzhen summit',
     d: 'Arrived early for APEC; first-ever China–Russia–US summit planned.',
     t: 'pol', lon: 114.06, lat: 22.55, art: 'flags3' },
-  { n: 2, k: 'EUROPE · UKRAINE WAR', h: 'Kerch Bridge span in the sea; Azov shipping blocked',
+  { n: 2, k: 'EUROPE · UKRAINE WAR', h: 'Kerch span falls; Azov blocked',
     d: 'A 227m road arch fell after a second Ukrainian strike; road and rail shut.',
     t: 'war', lon: 36.5, lat: 45.3, art: 'bridge' },
-  { n: 3, k: 'ASIA · DIPLOMACY', h: 'Quad wraps in Manila; minerals pact signed',
+  { n: 3, k: 'ASIA · DIPLOMACY', h: 'Quad wraps; Manila deal',
     d: 'First Quad leaders\u2019 meeting since 2024; deals curb coercion by one supplier.',
     t: 'pol', lon: 120.98, lat: 14.6, art: 'flags4' },
-  { n: 4, k: 'US · TECH', h: 'Nvidia doubles to $115.8bn; Huang stays out',
+  { n: 4, k: 'US · TECH', h: 'Nvidia doubles to $115.8bn',
     d: 'Revenue up 103% to $115.8bn; EPS $2.68 beat estimates; Q4 guide $130bn.',
     t: 'eco', lon: -119.8, lat: 35.4, art: 'chipup' }, // pin nudged: Santa Clara area, California
-  { n: 5, k: 'US · MARKETS', h: 'Dow slides 849 as AI sell-off deepens',
+  { n: 5, k: 'US · MARKETS', h: 'Dow slides 849 as AI sell-off',
     d: 'Dow fell 1.64% to 50,759; S&P 500 down 1.03% to 7,340, its lowest since late July.',
     t: 'eco', lon: -74.0, lat: 40.7, art: 'chartdown' },
-  { n: 6, k: 'GULF · IRAN WAR', h: 'Bahrain lifts alert; Kuwait reports intercepts',
+  { n: 6, k: 'GULF · IRAN WAR', h: 'Bahrain, Kuwait end alerts',
     d: 'Bahrain lifted an overnight warning; Kuwait\u2019s army said it intercepted drones.',
     t: 'war', lon: 50.55, lat: 26.2, art: 'radar' },
-  { n: 7, k: 'GULF · IRAN WAR', h: 'Tankers hit mines off Hormuz as talks open',
+  { n: 7, k: 'GULF · IRAN WAR', h: 'Tankers hit mines off Hormuz',
     d: 'Iran says tanker traffic won\u2019t return to pre-war levels; a US carrier arrived.',
     t: 'war', lon: 58.0, lat: 27.0, art: 'tanker' }, // pin nudged east into Gulf of Oman
-  { n: 8, k: 'AFRICA · HEALTH', h: 'Ebola passes 11,000 cases in DR Congo',
+  { n: 8, k: 'AFRICA · HEALTH', h: 'Ebola passes 11,000 in Congo',
     d: 'UN counts over 11,000 cases and 5,400 deaths; cases have doubled in three months.',
     t: 'health', lon: 23.0, lat: -2.5, art: 'medic' },
-  { n: 9, k: 'ASIA · CLIMATE', h: 'Cyclone Akvan nears India\u2019s east coast',
+  { n: 9, k: 'ASIA · CLIMATE', h: 'Cyclone Akvan nears India',
     d: 'The Bay of Bengal storm is set to strengthen into a severe cyclone by 19 Nov.',
     t: 'health', lon: 88.0, lat: 15.0, art: 'cyclone' },
-  { n: 10, k: 'US · TECH', h: 'Anthropic to price blockbuster IPO today',
+  { n: 10, k: 'US · TECH', h: 'Anthropic to price IPO today',
     d: 'Shares priced at $70–78, offering 825m; trading as ANT on Nasdaq starts 19 Nov.',
     t: 'eco', lon: -122.42, lat: 37.77, art: 'rocket' },
-  { n: 11, k: 'ASIA · POLITICS', h: 'Mongolia\u2019s president says he will step down',
+  { n: 11, k: 'ASIA · POLITICS', h: 'Mongolia leader to step down',
     d: 'He denies a $25m rail bribe claim; parliament must approve his resignation.',
     t: 'pol', lon: 106.9, lat: 47.92, art: 'door' },
-  { n: 12, k: 'AMERICAS · DIPLOMACY', h: 'Canada–China widen trade as Xi meets Carney',
+  { n: 12, k: 'AMERICAS · DIPLOMACY', h: 'Canada–China widen trade',
     d: 'The two sides widened trade cooperation ahead of the APEC summit in Shenzhen.',
     t: 'pol', lon: 116.4, lat: 39.9, art: 'flags2' },
   // ---- 18 ALSO (one line each: place bold + short phrase) ----
@@ -70,15 +70,15 @@ const STORIES = [
   { n: 19, k: 'ASIA · DIPLOMACY', place: 'India', text: 'Modi presses Indo-Pacific vision', t: 'pol', lon: 77.21, lat: 28.61 },
   { n: 20, k: 'AMERICAS · DIPLOMACY', place: 'Montreal', text: 'US presses UN on Taiwan', t: 'pol', lon: -73.57, lat: 45.5 },
   { n: 21, k: 'ASIA · TECH', place: 'Beijing', text: 'Baidu chief warns of AI bubble', t: 'eco', lon: 120.5, lat: 37.5 }, // pin nudged: Shandong, near Beijing
-  { n: 22, k: 'ASIA · BUSINESS', place: 'India', text: 'Amazon pledges $7bn renewables', t: 'eco', lon: 80.8, lat: 25.8 }, // pin nudged: south-east of New Delhi
+  { n: 22, k: 'ASIA · BUSINESS', place: 'India', text: 'Amazon pledges $7bn green', t: 'eco', lon: 80.8, lat: 25.8 }, // pin nudged: south-east of New Delhi
   { n: 23, k: 'US · ECONOMY', place: 'Washington', text: 'Fed minutes due today', t: 'eco', lon: -77.04, lat: 38.9 },
   { n: 24, k: 'EUROPE · POLITICS', place: 'Riga', text: 'Latvia approves new cabinet', t: 'pol', lon: 24.1, lat: 56.95 },
   { n: 25, k: 'US · LAW', place: 'US', text: 'Asif Merchant jailed 27.5 years', t: 'pol', lon: -80.5, lat: 36.5 }, // pin nudged: Virginia, near Washington
   { n: 26, k: 'ASIA · SPORT', place: 'Chennai', text: 'Dhoni retires from IPL', t: 'sport', lon: 80.27, lat: 13.08 },
   { n: 27, k: 'EUROPE · SPORT', place: 'Belfast', text: 'N. Ireland top Nations tier', t: 'sport', lon: -5.93, lat: 54.6 },
-  { n: 28, k: 'AFRICA · ANIMALS', place: 'Cape Town', text: 'baboon move sparks protests', t: 'other', lon: 18.42, lat: -33.92 },
+  { n: 28, k: 'AFRICA · ANIMALS', place: 'Cape Town', text: 'baboon move protested', t: 'other', lon: 18.42, lat: -33.92 },
   { n: 29, k: 'AMERICAS · RELIGION', place: 'Peru', text: 'Pope Leo hit in eye by rosary', t: 'other', lon: -75.0, lat: -10.0 },
-  { n: 30, k: 'ASIA · DIPLOMACY', place: 'Tokyo', text: 'Japan offers ASEAN energy aid', t: 'pol', lon: 139.69, lat: 35.68 },
+  { n: 30, k: 'ASIA · DIPLOMACY', place: 'Tokyo', text: 'Japan offers ASEAN aid', t: 'pol', lon: 139.69, lat: 35.68 },
 ];
 
 const THEME = {
@@ -588,13 +588,17 @@ function build() {
   fillRect(0, 0, W, H, CREAM);
 
   // 1. Masthead: paper name left, tagline right (italic, thin).
-  drawText('THE GLOBAL LEDGER', 28, 40, 30, [28, 28, 28], { weight: 1.5, tracking: 0.5 });
+  // FIX v2: masthead weight 1.5 -> 1.3 (same lumpy-stroke defect as the date bar).
+  drawText('THE GLOBAL LEDGER', 28, 40, 30, [28, 28, 28], { weight: 1.3, tracking: 0.5 });
   const tag = 'One day. Every continent. One page.';
   drawText(tag, 996 - textWidth(tag, 15, { weight: 0.9, slant: 0.16 }), 38, 15, [90, 85, 75], { weight: 0.9, slant: 0.16 });
 
   // 2. Navy bar: date huge, gold strip line below it.
+  // FIX v2 (defect 1): date weight 2.1 -> 1.25 (12.0px stroke closed the
+  // counters of 0/6/8/9/A/D), scaleX 0.8 -> 1.0 (no more condensing),
+  // tracking 1 -> 3, size 40 -> 38. Width 857px in the 968px bar.
   fillRect(28, 52, 968, 82, NAVY);
-  drawCentered('WEDNESDAY 18 NOVEMBER 2026', 512, 108, 40, [255, 255, 255], { weight: 2.1, scaleX: 0.8, tracking: 1 });
+  drawCentered('WEDNESDAY 18 NOVEMBER 2026', 512, 108, 38, [255, 255, 255], { weight: 1.25, scaleX: 1.0, tracking: 3 });
   drawCentered('30 STORIES · 6 CONTINENTS · ONE DAY', 512, 128, 13, GOLD, { weight: 1.6, tracking: 2.5 });
 
   // 3. Grid 4x3 = 12 features.
@@ -610,21 +614,26 @@ function build() {
     // illustration band
     fillRect(cx0, cy0, colW, 58, th.tint);
     drawArt(s.art, cx0, cy0, colW);
-    // number badge
-    const bx = cx0 + 17, by = cy0 + 58 + 13;
+    // number badge — FIX v2 (defect 3): fully INSIDE the illustration band
+    // (centre cy0+17, like Daily Meridian), so it can never cover the kicker.
+    const bx = cx0 + 17, by = cy0 + 17;
     fillCircle(bx, by, 11, th.c);
     ring(bx, by, 11, 1.2, [255, 255, 255]);
     const num = String(s.n);
     drawText(num, bx - textWidth(num, 13, { weight: 1.6 }) / 2, by + 4.5, 13, [255, 255, 255], { weight: 1.6 });
-    // kicker
-    drawText(s.k, cx0 + 34, cy0 + 58 + 17, 10.5, th.c, { weight: 1.8, scaleX: 0.88, tracking: 0.3 });
-    // headline (auto-fit to 3 lines)
-    const hb = fitBlock(s.h, colW - 24, 19, 3, 22, { weight: 1.55, scaleX: 0.92 });
-    let hy = cy0 + 58 + 36;
-    for (const ln of hb.lines) { drawText(ln, cx0 + 12, hy, hb.size, INK, { weight: 1.55, scaleX: 0.92 }); hy += 22; }
+    // kicker — FIX v2: starts at cx0+12 (badge no longer in the way),
+    // weight 1.8 -> 1.5, baseline one px higher to clear the 22px headline.
+    drawText(s.k, cx0 + 12, cy0 + 58 + 15, 10.5, th.c, { weight: 1.5, scaleX: 0.88, tracking: 0.3 });
+    // headline — FIX v2 (defect 2): MAX 2 lines at 22px (was 3 lines at
+    // 19px), weight 1.55 -> 1.3, scaleX 0.92 -> 0.85; headlines trimmed
+    // in STORIES so all 12 fit in 2 lines at full 22px (verified by wrap
+    // math; fitBlock only shrinks as a safety net, never triggers now).
+    const hb = fitBlock(s.h, colW - 24, 22, 2, 26, { weight: 1.3, scaleX: 0.85 });
+    let hy = cy0 + 58 + 40;
+    for (const ln of hb.lines) { drawText(ln, cx0 + 12, hy, hb.size, INK, { weight: 1.3, scaleX: 0.85 }); hy += 26; }
     // deck (auto-fit to 3 lines)
     const db = fitBlock(s.d, colW - 24, 11, 3, 13.5, { weight: 1.3, scaleX: 0.95 });
-    let dy = cy0 + 58 + 36 + hb.lines.length * 22 + 11;
+    let dy = cy0 + 58 + 40 + hb.lines.length * 26 + 11;
     for (const ln of db.lines) { drawText(ln, cx0 + 12, dy, db.size, [85, 82, 75], { weight: 1.3, scaleX: 0.95 }); dy += 13.5; }
   }
 
@@ -645,15 +654,18 @@ function build() {
   }
 
   // 6. ALSO list: 2 columns x 9 rows.
+  // FIX v2 (defect 4): font 9.5 -> 9.0 and the three longest col-2 items
+  // trimmed in STORIES (#22/#28/#30). Worst col-2 right edge is now 982px
+  // (14px margin to the 996px page edge); item 30 ends at 956px.
   for (let i = 12; i < 30; i++) {
     const s = STORIES[i];
     const col = Math.floor((i - 12) / 9), row = (i - 12) % 9;
     const ax = 500 + col * 254, ay = 816 + row * 14.5;
     const th = THEME[s.t];
     let x = ax;
-    x = drawText(String(s.n), x, ay, 9.5, th.c, { weight: 1.5 }) + 5;
-    x = drawText(s.place + ':', x, ay, 9.5, INK, { weight: 1.5 }) + 4;
-    drawText(s.text, x, ay, 9.5, [70, 66, 58], { weight: 1.1 });
+    x = drawText(String(s.n), x, ay, 9, th.c, { weight: 1.5 }) + 5;
+    x = drawText(s.place + ':', x, ay, 9, INK, { weight: 1.5 }) + 4;
+    drawText(s.text, x, ay, 9, [70, 66, 58], { weight: 1.1 });
   }
 
   // 7. Footer.
