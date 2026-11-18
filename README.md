@@ -1,8 +1,8 @@
 # The Global Ledger — Wednesday 18 November 2026 in one image
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Node 22](https://img.shields.io/badge/Node-22-green.svg)](https://nodejs.org)
-[![make.fun bounty](https://img.shields.io/badge/make.fun-news--image--20261118-blue.svg)](https://make.fun/bounty/news-image-20261118)
+[![make.fun · news-image-20261118](https://make.fun/badge/news-image-20261118.svg)](https://make.fun/bounty/news-image-20261118?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118)
+[![rank](https://make.fun/badge/news-image-20261118/Goatleaf12/makefun-news-image-1118/rank.svg)](https://make.fun/bounty/news-image-20261118/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118)
+[![reward](https://make.fun/badge/news-image-20261118/Goatleaf12/makefun-news-image-1118/reward.svg)](https://make.fun/bounty/news-image-20261118?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118)
 
 A [make.fun](https://make.fun/bounty/news-image-20261118) entry for
 **news-image-20261118**: sum up 18 November 2026's world news in one image.
